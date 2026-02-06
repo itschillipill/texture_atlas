@@ -22,7 +22,7 @@ class StorageService {
     final id = _uuid.v4();
 
     final pngFile = File(p.join(_baseDir.path, '$id.png'));
-    await pngFile.writeAsBytes(result.pngBytes);
+    await pngFile.writeAsBytes(result.imgBytes);
 
     final metadata = {
       'id': id,

@@ -70,9 +70,8 @@ class SimpleTexturePacker implements TexturePacker {
     return PackResult(
       width: atlasWidth,
       height: atlasHeight,
-      image: atlasImage,
       sprites: packedSprites,
-      pngBytes: encodePng(atlasImage),
+      imgBytes: encodePng(atlasImage),
       efficiency: _calculateEfficiency(packedSprites, atlasWidth, atlasHeight),
     );
   }

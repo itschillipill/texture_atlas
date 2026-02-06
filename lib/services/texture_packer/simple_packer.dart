@@ -22,33 +22,38 @@ class SimpleTexturePacker implements TexturePacker {
     var rowHeight = 0;
     
     final packedSprites = <PackedSprite>[];
-    
+    final totalArea = images.fold<int>(
+  0,
+  (sum, img) => sum + img.width * img.height,
+);
+
+final targetWidth = sqrt(totalArea).ceil();
+print("$targetWidth " + "$totalArea");
+
     for (var i = 0; i < images.length; i++) {
-      final image = images[i];
-      
-      // Если изображение не помещается в текущую строку, начинаем новую
-      if (currentX + image.width > 1024) { // временный лимит
-        currentX = 0;
-        currentY += rowHeight;
-        rowHeight = 0;
-      }
-      
-      // Размещаем изображение
-      packedSprites.add(PackedSprite(
-        name: 'image_$i',
-        x: currentX,
-        y: currentY,
-        width: image.width,
-        height: image.height,
-      ));
-      
-      currentX += image.width;
-      rowHeight = max(rowHeight, image.height);
-      
-      // Обновляем размеры атласа
-      atlasWidth = max(atlasWidth, currentX);
-      atlasHeight = max(atlasHeight, currentY + rowHeight);
-    }
+  final image = images[i];
+
+  if (currentX + image.width > targetWidth) {
+    currentX = 0;
+    currentY += rowHeight + padding;
+    rowHeight = 0;
+  }
+
+  packedSprites.add(PackedSprite(
+    name: 'image_$i',
+    x: currentX,
+    y: currentY,
+    width: image.width,
+    height: image.height,
+  ));
+
+  currentX += image.width + padding;
+  rowHeight = max(rowHeight, image.height);
+
+  atlasWidth = max(atlasWidth, currentX);
+  atlasHeight = max(atlasHeight, currentY + rowHeight);
+}
+
     
     // Создаем итоговое изображение атласа
     final atlasImage = Image(width: atlasWidth, height: atlasHeight);

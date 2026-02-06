@@ -1,0 +1,11 @@
+name: texture_atlas
+description: A Dart poject for creating a texture atlas
+version: 0.0.1-dev
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  shelf: ^1.4.2
+  shelf_multipart: ^2.0.1
+  shelf_router: ^1.1.4

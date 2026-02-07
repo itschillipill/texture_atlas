@@ -1,4 +1,4 @@
- import 'dart:io' show Directory;
+import 'dart:io' show Directory;
 
 void ensureUploadsDir(String uploadsDir) {
   final dir = Directory(uploadsDir);

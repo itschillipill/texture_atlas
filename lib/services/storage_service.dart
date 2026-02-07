@@ -2,13 +2,14 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:shelf/shelf.dart';
 import 'package:path/path.dart' as p;
+import 'package:texture_atlas/utils/constants.dart';
 import 'package:uuid/uuid.dart';
 
 import '../services/texture_packer/pack_result.dart';
 
 class StorageService {
   static final _uuid = Uuid();
-  static final _baseDir = Directory('uploads');
+  static final _baseDir = Directory(uploadsDir);
 
   static void ensure() {
     if (!_baseDir.existsSync()) {

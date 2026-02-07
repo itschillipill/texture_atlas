@@ -4,7 +4,7 @@ class PackedSprite {
   final int y;
   final int width;
   final int height;
-  
+
   PackedSprite({
     required this.name,
     required this.x,
@@ -12,7 +12,7 @@ class PackedSprite {
     required this.width,
     required this.height,
   });
-  
+
   Map<String, dynamic> toJson() {
     return {
       'name': name,

@@ -6,5 +6,9 @@ class AtlasMetadata {
   final int height;
   final List<PackedSprite> sprites;
 
-  AtlasMetadata({required this.id, required this.width, required this.height, required this.sprites});
+  AtlasMetadata(
+      {required this.id,
+      required this.width,
+      required this.height,
+      required this.sprites});
 }

@@ -1,8 +1,27 @@
 <html>
   <body>
-    <form action="http://localhost:8080/upload" method="post" enctype="multipart/form-data">
-    <input type="file" name="files" multiple />
-    <button type="submit">Upload</button>
-  </form>  
+    <form
+      action="http://localhost:8080/upload"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <label>
+        Algorithm:
+        <select name="algorithm">
+          <option value="shelf">Shelf</option>
+          <option value="shelf_sorted">Shelf Sorted</option>
+          <option value="skyline">Skyline</option>
+          <option value="maxrects">MaxRects</option>
+        </select>
+      </label>
+
+      <br /><br />
+
+      <input type="file" name="files" multiple />
+
+      <br /><br />
+
+      <button type="submit">Upload</button>
+    </form>
   </body>
 </html>

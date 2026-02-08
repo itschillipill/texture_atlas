@@ -6,7 +6,7 @@ import '../../models/packed_sprite.dart';
 import 'pack_result.dart';
 import 'texture_packer.dart';
 
-class SimpleTexturePacker extends TexturePacker {
+class ShelfTexturePacker extends TexturePacker {
   @override
   Future<PackResult> pack(List<Image> images, {int padding = 1}) async {
     if (images.isEmpty) {

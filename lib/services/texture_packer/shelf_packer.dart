@@ -6,7 +6,7 @@ import '../../models/packed_sprite.dart';
 import 'pack_result.dart';
 import 'texture_packer.dart';
 
-class ShelfTexturePacker extends TexturePacker {
+class ShelfTexturePacker implements TexturePacker{
   @override
   Future<PackResult> pack(Iterable<Image> images, {int padding = 1}) async {
     if (images.isEmpty) {
@@ -75,7 +75,7 @@ class ShelfTexturePacker extends TexturePacker {
       height: atlasHeight,
       sprites: packedSprites,
       imgBytes: encodePng(atlasImage),
-      efficiency: calculateEfficiency(packedSprites, atlasWidth, atlasHeight),
+      efficiency: TexturePacker.calculateEfficiency(packedSprites, atlasWidth, atlasHeight),
     );
   }
 }

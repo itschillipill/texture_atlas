@@ -3,24 +3,23 @@
 /// Each algorithm defines a different strategy
 /// for placing images inside a single atlas.
 enum TexturePackingAlgorithm {
-  /// Shelf (row-based) packing.
-  ///
-  /// Images are placed from left to right in horizontal rows.
-  /// When the current row has no space left,
-  /// a new row is started below.
-  ///
-  /// The height of each row is defined by
-  /// the tallest image placed in that row.
-  shelf,
-
   /// Sorted shelf packing.
   ///
-  /// Images are sorted by size (commonly by height or area)
+  /// Images are sorted by area
   /// before being placed using the shelf strategy.
   ///
   /// The placement itself is still row-based,
   /// but ordering reduces empty vertical gaps.
-  shelfSorted,
+  shelfSortedByArea,
+
+  /// Sorted shelf packing.
+  ///
+  /// Images are sorted by height
+  /// before being placed using the shelf strategy.
+  ///
+  /// The placement itself is still row-based,
+  /// but ordering reduces empty vertical gaps.
+  shelfSortedByHeight,
 
   /// Skyline packing.
   ///
@@ -59,11 +58,12 @@ enum TexturePackingAlgorithm {
 
   static TexturePackingAlgorithm fromString(String value) {
     switch (value.toLowerCase()) {
-      case 'shelf':
-        return TexturePackingAlgorithm.shelf;
-      case 'shelf_sorted':
-      case 'shelfsorted':
-        return TexturePackingAlgorithm.shelfSorted;
+      case 'shelf_sorted_area':
+      case 'shelfsortedarea':
+        return TexturePackingAlgorithm.shelfSortedByArea;
+      case 'shelf_sorted_height':
+      case 'shelfsortedheight':
+        return TexturePackingAlgorithm.shelfSortedByHeight;
       case 'skyline':
         return TexturePackingAlgorithm.skyline;
       case 'maxrects':
@@ -77,10 +77,10 @@ enum TexturePackingAlgorithm {
 extension TexturePackingAlgorithmDocs on TexturePackingAlgorithm {
   String get description {
     switch (this) {
-      case TexturePackingAlgorithm.shelf:
-        return 'Places images in horizontal rows from left to right.';
-      case TexturePackingAlgorithm.shelfSorted:
-        return 'Sorts images by size, then places them in rows.';
+      case TexturePackingAlgorithm.shelfSortedByArea:
+        return 'Sorts images by area, then places them in rows.';
+      case TexturePackingAlgorithm.shelfSortedByHeight:
+        return 'Sorts images by height, then places them in rows.';
       case TexturePackingAlgorithm.skyline:
         return 'Places images along the lowest available skyline.';
       case TexturePackingAlgorithm.maxRects:

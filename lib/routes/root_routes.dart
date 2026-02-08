@@ -12,13 +12,35 @@ Router rootRoutes() {
 
 Response _rootHandler(Request request) {
   return Response.ok(
-    'Texture Atlas Server v0.2\n\n'
-    'Endpoints:\n'
-    '  GET  /\n'
-    '  GET  /health\n'
-    '  POST /upload\n'
-    '  GET  /atlas/<id>\n'
-    '  GET  /download/<id>\n',
+    '''
+<html>
+  <body>
+    <form
+      action="http://localhost:8080/upload"
+      method="post"
+      enctype="multipart/form-data"
+      target="_blank"
+    >
+      <label>
+        Algorithm:
+        <select name="algorithm">
+          <option value="shelf_sorted_height">Shelf Sorted By Height</option>
+          <option value="shelf_sorted_area">Shelf Sorted By Area</option>
+        </select>
+      </label>
+
+      <br /><br />
+
+      <input type="file" name="files" multiple />
+
+      <br /><br />
+
+      <button type="submit">Upload</button>
+    </form>
+  </body>
+</html>
+''',
+    headers: {'content-type': 'text/html'},
   );
 }
 

@@ -8,12 +8,11 @@ import 'texture_packer.dart';
 
 class ShelfTexturePacker extends TexturePacker {
   @override
-  Future<PackResult> pack(List<Image> images, {int padding = 1}) async {
+  Future<PackResult> pack(Iterable<Image> images, {int padding = 1}) async {
     if (images.isEmpty) {
       throw ArgumentError('No images to pack');
     }
-
-    images.sort((a, b) => b.height.compareTo(a.height));
+    final imagesList = images.toList();
 
     var atlasWidth = 0;
     var atlasHeight = 0;
@@ -31,7 +30,7 @@ class ShelfTexturePacker extends TexturePacker {
     print("$targetWidth " + "$totalArea");
 
     for (var i = 0; i < images.length; i++) {
-      final image = images[i];
+      final image = imagesList[i];
 
       if (currentX + image.width > targetWidth) {
         currentX = 0;
@@ -65,7 +64,7 @@ class ShelfTexturePacker extends TexturePacker {
       final sprite = packedSprites[i];
       compositeImage(
         atlasImage,
-        images[i],
+        imagesList[i],
         dstX: sprite.x,
         dstY: sprite.y,
       );

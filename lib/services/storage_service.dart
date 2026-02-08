@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:shelf/shelf.dart';
 import 'package:path/path.dart' as p;
+import 'package:texture_atlas/models/texture_packing_algorithm.dart';
 import 'package:texture_atlas/utils/constants.dart';
 import 'package:uuid/uuid.dart';
 
@@ -17,7 +18,7 @@ class StorageService {
     }
   }
 
-  static Future<Map<String, dynamic>> saveAtlas(PackResult result) async {
+  static Future<Map<String, dynamic>> saveAtlas(PackResult result, TexturePackingAlgorithm algorithm) async {
     ensure();
 
     final id = _uuid.v4();
@@ -27,6 +28,7 @@ class StorageService {
 
     final metadata = {
       'id': id,
+      'algorithm': algorithm.name,
       'width': result.width,
       'height': result.height,
       'sprites': result.sprites.map((e) => e.toJson()).toList(),

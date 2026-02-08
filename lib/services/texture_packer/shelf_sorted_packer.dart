@@ -25,8 +25,7 @@ class ShelfAreaSortedPacker extends ShelfTexturePacker {
     }
 
     final sortedImages = List<Image>.from(images)
-      ..sort((a, b) =>
-          (b.width * b.height).compareTo(a.width * a.height));
+      ..sort((a, b) => (b.width * b.height).compareTo(a.width * a.height));
 
     return super.pack(sortedImages, padding: padding);
   }

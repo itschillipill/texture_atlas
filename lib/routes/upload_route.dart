@@ -28,11 +28,12 @@ Future<Response> _uploadHandler(Request request) async {
       );
     }
 
-    final result =
-        await (switch (algorithm) { 
-          TexturePackingAlgorithm.shelfSortedByArea => ShelfAreaSortedPacker(),
-          TexturePackingAlgorithm.shelfSortedByHeight => ShelfHeightSortedPacker(),
-          _ => ShelfHeightSortedPacker()}).pack(images);
+    final result = await (switch (algorithm) {
+      TexturePackingAlgorithm.shelfSortedByArea => ShelfAreaSortedPacker(),
+      TexturePackingAlgorithm.shelfSortedByHeight => ShelfHeightSortedPacker(),
+      _ => ShelfHeightSortedPacker()
+    })
+        .pack(images);
 
     final metadata = await StorageService.saveAtlas(result, algorithm);
 

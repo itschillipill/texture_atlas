@@ -4,7 +4,7 @@ import 'package:texture_atlas/models/packed_sprite.dart';
 import 'pack_result.dart';
 
 abstract class TexturePacker {
-  Future<PackResult> pack(Iterable<Image> images, {int padding = 1}){
+  Future<PackResult> pack(Iterable<Image> images, {int padding = 1}) {
     throw UnimplementedError();
   }
 

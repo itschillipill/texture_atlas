@@ -18,7 +18,8 @@ class StorageService {
     }
   }
 
-  static Future<Map<String, dynamic>> saveAtlas(PackResult result, TexturePackingAlgorithm algorithm) async {
+  static Future<Map<String, dynamic>> saveAtlas(
+      PackResult result, TexturePackingAlgorithm algorithm) async {
     ensure();
 
     final id = _uuid.v4();
